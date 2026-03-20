@@ -1,19 +1,35 @@
-# Student Search SPA
+# Student Search Application with Lazy Loading
 
-A Single Page Application (SPA) built with React.js and Node.js that implements an optimized, lazy-loaded search bar.
+A responsive Single Page Application (SPA) built with React.js and a custom Node.js/Express backend. This project implements a highly optimized search bar featuring lazy loading, debouncing, and a custom mock database.
 
-## Features Implemented
-* **Lazy Loading / Min Characters:** The search only fires when the user has typed at least 3 characters.
-* **Debouncing:** API calls are delayed by 400ms after the user stops typing to prevent unnecessary network requests and backend overload.
-* **Result Limiting:** The backend only returns a maximum of 5 students to optimize network payload.
-* **Text Highlighting (Bonus):** Matches in the search dropdown are visually highlighted.
-* **Special Character Handling:** The search and highlighter safely handle special characters using regex escaping.
-* **No Database:** Uses a local JSON file to serve REST API data as requested.
+## Live Demo
+* Frontend (Vercel): [Link to be added after deployment]
+* Backend (Render): [Link to be added after deployment]
 
-## Setup Instructions
+## Key Features & Optimizations
 
-### 1. Backend Setup
-1. Open a terminal and navigate to the `backend` folder.
-2. Install dependencies:
-   ```bash
-   npm install
+* **Lazy Loading:** The API call is strictly conditionally triggered. The search function requires a minimum of 3 characters before executing, saving bandwidth and preventing useless queries for 1 or 2 letters.
+* **Debouncing (Bonus):** Implemented a 400ms debounce timer using `useEffect` and `setTimeout`. This ensures the API isn't spammed on every single keystroke, waiting until the user pauses typing before fetching data.
+* **Text Highlighting (Bonus):** The search dropdown visually highlights the matching substring within the student's name, utilizing regex with special character escaping to prevent crashes.
+* **Case-Insensitive Searching:** The backend safely converts queries and database entries to lowercase before matching, ensuring `jas` successfully finds `Jaspreet`.
+* **NoSQL-Free Mock Database:** Per the assignment constraints, the backend serves data from a local JSON file synchronously loaded into memory, functioning as an ultra-fast REST API without external DB dependencies.
+* **Responsive UI/UX:** A clean, minimalist "glassmorphism" interface built with pure CSS. It gracefully adapts to mobile devices by restructuring the flexbox layouts.
+
+## Tech Stack
+* **Frontend:** React.js (Vite), CSS3, Lucide React (Icons)
+* **Backend:** Node.js, Express.js, CORS
+* **Database:** Local JSON File
+
+---
+
+## 💻 Local Setup Instructions
+
+To run this project locally, you will need to run both the backend server and the frontend development server simultaneously in two separate terminals.
+
+### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
+
+### 1. Clone the Repository
+```bash
+git clone [https://github.com/Kanwar019/Student-Search-Lazy-Loading.git](https://github.com/Kanwar019/Student-Search-Lazy-Loading.git)
+cd Student-Search-Lazy-Loading
