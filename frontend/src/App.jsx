@@ -20,7 +20,7 @@ function App() {
     // Debounce Implementation: Wait 400ms after user stops typing
     const debounceTimer = setTimeout(async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/search?q=${encodeURIComponent(query)}`);
+        const response = await fetch(`https://student-search-lazy-loading.onrender.com/api/search?q=${encodeURIComponent(query)}`);
         const data = await response.json();
         setResults(data);
       } catch (error) {
