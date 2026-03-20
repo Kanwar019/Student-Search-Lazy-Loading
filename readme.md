@@ -3,8 +3,8 @@
 A responsive Single Page Application (SPA) built with React.js and a custom Node.js/Express backend. This project implements a highly optimized search bar featuring lazy loading, debouncing, and a custom mock database.
 
 ## Live Demo
-* Frontend (Vercel): [Link to be added after deployment]
-* Backend (Render): [Link to be added after deployment]
+* Frontend (Vercel): https://student-search-lazy-loading.vercel.app/
+* Backend (Render): https://student-search-lazy-loading.onrender.com
 
 ## Key Features & Optimizations
 
