@@ -1,0 +1,315 @@
+/* --- Global Variables --- */
+:root {
+  --bg-color: #f5f5f7; 
+  --card-bg: rgba(255, 255, 255, 0.85); 
+  --text-main: #1d1d1f;
+  --text-muted: #86868b;
+  --accent: #0071e3; 
+  --border: #e5e5ea;
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+}
+
+/* --- Layout & Typography --- */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, sans-serif;
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; 
+  margin: 0 auto; 
+}
+
+/* --- Header --- */
+.header-section {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700; 
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--text-main);
+}
+
+.underline {
+  display: none; 
+}
+
+/* --- Search Bar --- */
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  z-index: 20;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-xl);
+  padding: 1rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.search-bar:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.search-bar:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.2), var(--shadow-md);
+  border-color: var(--accent);
+}
+
+.search-icon {
+  color: var(--text-muted);
+  margin-right: 12px;
+  transition: color 0.3s ease;
+}
+
+.search-bar:focus-within .search-icon {
+  color: var(--accent);
+}
+
+.search-bar input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--text-main);
+  background: transparent;
+}
+
+.search-bar input::placeholder {
+  color: #a1a1a6;
+  font-weight: 300;
+}
+
+/* --- Dropdown Results --- */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  right: 0;
+  background: var(--card-bg);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin: 0;
+  padding: 0.5rem 0;
+  list-style: none;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.dropdown li {
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease;
+  font-size: 1.05rem;
+}
+
+.dropdown li:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.text-highlight {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.no-results {
+  color: var(--text-muted);
+  justify-content: center;
+  font-weight: 300;
+}
+
+/* --- Profile Card --- */
+.profile-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1);
+}
+
+.profile-subtitle {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.profile-body {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.avatar {
+  width: 86px;
+  height: 86px;
+  background: linear-gradient(135deg, #e5e5ea, #f5f5f7);
+  color: var(--text-muted);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  font-weight: 300;
+  flex-shrink: 0;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Strict Left Alignment Layout */
+.details-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px; 
+  width: 100%;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.detail-icon {
+  color: var(--text-muted);
+  margin-right: 14px;
+  flex-shrink: 0; 
+}
+
+.detail-label {
+  color: var(--text-muted);
+  width: 120px; /* Perfect tight width for the labels */
+  flex-shrink: 0; 
+  font-size: 0.95rem;
+  font-weight: 400;
+  text-align: left;
+}
+
+.detail-value {
+  font-weight: 400;
+  font-size: 1.05rem;
+  color: var(--text-main);
+  text-align: left; 
+  flex-grow: 1; 
+}
+
+.name-value {
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.badge {
+  background-color: var(--accent);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  display: inline-block;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* --- Responsive Design for Mobile --- */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+    align-items: flex-start; 
+  }
+  
+  .container {
+    transform: translateY(5vh); 
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .profile-body {
+    flex-direction: column;
+    align-items: flex-start; 
+    text-align: left; 
+    gap: 1.5rem;
+  }
+
+  .detail-row {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .detail-label {
+    width: 110px; 
+    font-size: 0.9rem;
+  }
+
+  .detail-icon {
+    display: none; 
+  }
+}
